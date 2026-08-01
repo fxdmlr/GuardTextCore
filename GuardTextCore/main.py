@@ -169,7 +169,8 @@ def write_image_stream(stream_addr):
         r = utils.create_paste(current_address, json.dumps(msg_dict))
         print(r)
         capture_photo.capture_photo(camera_index=0, output_path="image.jpg")
-        msg = encode_image_to_fit("image.jpg", char_limit=1748)
+        bw_img = threshold_image("image.jpg", threshold=128, output_path="bw.png")
+        msg = encode_image_to_fit("bw.png", char_limit=1748)
         t = time.time()
         print(msg)
         current_address = next
